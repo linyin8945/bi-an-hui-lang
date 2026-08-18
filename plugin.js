@@ -1,3 +1,8 @@
+import {
+  renderHome
+} from "./ui/home.js";
+
+
 window.RochePlugin.register({
 
   id: "bi-an-hui-lang",
@@ -21,81 +26,110 @@ window.RochePlugin.register({
       async mount(container, roche) {
 
 
-        container.innerHTML = `
-
-        <div class="bi-test-home">
-
-          <div class="bi-title">
-            彼岸回廊
-          </div>
-
-          <div class="bi-subtitle">
-            无限轮回系统
-          </div>
+        async function open(page){
 
 
-        </div>
+          if(page === "home"){
+
+            await renderHome(
+              container,
+              roche,
+              open
+            );
+
+          }
 
 
-        <style>
+          if(page === "dungeon"){
 
-        .bi-test-home {
+            container.innerHTML = `
 
-          height:100%;
+            <div style="
+            height:100%;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            color:#d5b06a;
+            background:#111;
+            font-size:30px;
+            ">
 
-          display:flex;
+            副本系统开发中
 
-          flex-direction:column;
+            </div>
 
-          justify-content:center;
+            `;
 
-          align-items:center;
+          }
 
-          background:#111;
 
-          color:#d5b06a;
+          if(page === "companion"){
 
-          font-family:serif;
+            container.innerHTML = `
 
-          gap:20px;
+            <div style="
+            height:100%;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            color:#d5b06a;
+            background:#111;
+            font-size:30px;
+            ">
+
+            同行系统开发中
+
+            </div>
+
+            `;
+
+          }
+
+
+          if(page === "archive"){
+
+            container.innerHTML = `
+
+            <div style="
+            height:100%;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            color:#d5b06a;
+            background:#111;
+            font-size:30px;
+            ">
+
+            档案系统开发中
+
+            </div>
+
+            `;
+
+          }
+
 
         }
 
 
-        .bi-title {
 
-          font-size:40px;
-
-          letter-spacing:8px;
-
-        }
-
-
-        .bi-subtitle {
-
-          font-size:18px;
-
-          color:#a88b55;
-
-        }
-
-
-        </style>
-
-        `;
+        await open("home");
 
 
       },
 
 
-      async unmount(container) {
+      async unmount(container){
 
         container.replaceChildren();
 
       }
 
+
     }
 
+
   ]
+
 
 });
