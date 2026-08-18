@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "description": "Roche平台上的东方民俗无限流剧情游戏插件，包含角色、副本与轮回探索系统。",
   "author": "BiAn Studio",
-  "entry": "https://raw.githubusercontent.com/你的用户名/bi-an-hui-lang/main/plugin.js",
+  "entry": "https://raw.githubusercontent.com/linyin8945/bi-an-hui-lang/main/plugin.js",
   "hash": "",
   "permissions": [
     "persona:read",
