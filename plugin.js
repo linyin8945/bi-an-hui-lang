@@ -4,7 +4,7 @@ window.RochePlugin.register({
 
   name: "彼岸回廊",
 
-  version: "1.0.3.2",
+  version: "1.0.3.3",
 
   apps: [
 
@@ -23,6 +23,7 @@ window.RochePlugin.register({
         let currentPage = "home";
 
 
+
         function render(){
 
 
@@ -31,347 +32,35 @@ window.RochePlugin.register({
 <div class="bah-app">
 
 
-<style>
-
-.bah-app {
-
-  width:100%;
-  height:100%;
-
-  background:
-  radial-gradient(
-    circle at top,
-    rgba(120,40,30,.18),
-    transparent 45%
-  ),
-  #0c0908;
-
-  color:#d8c9a3;
-
-  font-family:
-  "Noto Serif SC",
-  "Songti SC",
-  serif;
-
-  display:flex;
-  flex-direction:column;
-
-  overflow:hidden;
-
-}
-
-
-
-.bah-header {
-
-  height:72px;
-
-  flex-shrink:0;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:space-between;
-
-  padding:0 18px;
-
-
-  background:
-  rgba(12,9,8,.95);
-
-
-  border-bottom:
-  1px solid #8c6239;
-
-}
-
-
-
-.bah-header button {
-
-  background:none;
-
-  border:none;
-
-  color:#e3c27a;
-
-  font-size:24px;
-
-}
-
-
-
-.bah-title {
-
-  text-align:center;
-
-  letter-spacing:5px;
-
-  color:#e3c27a;
-
-  font-size:21px;
-
-}
-
-
-
-.bah-title small {
-
-  display:block;
-
-  margin-top:4px;
-
-  font-size:11px;
-
-  color:#bda36d;
-
-  letter-spacing:2px;
-
-}
-
-
-
-.bah-main {
-
-  flex:1;
-
-  overflow:auto;
-
-  padding:20px;
-
-}
-
-
-
-.bah-paper {
-
-
-  background:
-
-  linear-gradient(
-  135deg,
-  #d8c28d,
-  #a88a55
-  );
-
-
-  color:#28180b;
-
-
-  padding:24px;
-
-
-  border:
-
-  1px solid #8c6239;
-
-
-  box-shadow:
-
-  0 15px 35px rgba(0,0,0,.7);
-
-
-}
-
-
-
-.bah-paper h2 {
-
-  margin-top:0;
-
-  color:#4b2416;
-
-}
-
-
-
-.bah-door {
-
-
-  margin-top:45px;
-
-
-  height:190px;
-
-
-  display:flex;
-
-
-  flex-direction:column;
-
-
-  align-items:center;
-
-
-  justify-content:center;
-
-
-
-  background:
-
-
-  linear-gradient(
-  90deg,
-  #351b0e,
-  #120806
-  );
-
-
-  border:
-
-  2px solid #8c6239;
-
-
-  color:#e3c27a;
-
-
-  font-size:22px;
-
-
-  box-shadow:
-
-  0 15px 40px black;
-
-
-}
-
-
-
-.bah-nav {
-
-
-  height:70px;
-
-
-  flex-shrink:0;
-
-
-  display:flex;
-
-
-  justify-content:space-around;
-
-
-  align-items:center;
-
-
-
-  background:
-
-
-  #25150c;
-
-
-
-  border-top:
-
-
-  1px solid #8c6239;
-
-
-}
-
-
-
-.bah-nav button {
-
-
-  background:none;
-
-
-  border:none;
-
-
-  color:#d8c9a3;
-
-
-  font-family:inherit;
-
-
-}
-
-
-
-.bah-nav span {
-
-
-  display:block;
-
-
-  font-size:22px;
-
-
-  color:#e3c27a;
-
-
-}
-
-
-
-.bah-nav small {
-
-
-  font-size:11px;
-
-
-}
-
-
-
-.old-btn {
-
-
-  margin-top:20px;
-
-
-  padding:12px 28px;
-
-
-  background:#5b1717;
-
-
-  border:1px solid #a98245;
-
-
-  color:#e3c27a;
-
-
-  font-family:inherit;
-
-
-}
-
-
-</style>
-
-
-
 <header class="bah-header">
 
 
 <button class="bah-back">
-←
+◁
 </button>
+
 
 
 <div class="bah-title">
 
 彼岸回廊
 
-<small>
+<span>
 无限轮回系统
-</small>
+</span>
 
 </div>
 
 
+
 <button class="bah-bell">
-🔔
+◯
 </button>
 
 
 </header>
+
+
 
 
 
@@ -383,37 +72,46 @@ ${renderPage()}
 
 
 
+
+
 <nav class="bah-nav">
 
 
 <button data-page="home">
 
+<i>灯</i>
+
 <span>回</span>
-<small>大厅</small>
 
 </button>
+
 
 
 <button data-page="door">
 
+<i>门</i>
+
 <span>门</span>
-<small>副本</small>
 
 </button>
+
 
 
 <button data-page="bond">
 
+<i>契</i>
+
 <span>缘</span>
-<small>同行</small>
 
 </button>
 
 
+
 <button data-page="record">
 
+<i>卷</i>
+
 <span>卷</span>
-<small>档案</small>
 
 </button>
 
@@ -421,6 +119,496 @@ ${renderPage()}
 </nav>
 
 
+
+
+
+<style>
+
+
+.bah-app{
+
+
+width:100%;
+
+height:100%;
+
+
+display:flex;
+
+flex-direction:column;
+
+
+overflow:hidden;
+
+
+color:#d7c39a;
+
+
+font-family:
+"Noto Serif SC",
+serif;
+
+
+
+background:
+
+
+radial-gradient(
+circle at 50% 15%,
+rgba(120,35,25,.25),
+transparent 35%
+),
+
+
+linear-gradient(
+180deg,
+#17100c,
+#080605
+);
+
+
+
+position:relative;
+
+
+}
+
+
+
+
+.bah-app::before{
+
+
+content:"";
+
+
+position:absolute;
+
+
+inset:0;
+
+
+background:
+
+repeating-linear-gradient(
+90deg,
+rgba(255,255,255,.018) 0,
+transparent 3px,
+transparent 8px
+);
+
+
+
+pointer-events:none;
+
+
+}
+
+
+
+
+.bah-header{
+
+
+height:78px;
+
+
+display:flex;
+
+
+align-items:center;
+
+
+justify-content:space-between;
+
+
+padding:0 18px;
+
+
+
+background:
+
+
+linear-gradient(
+180deg,
+#352116,
+#17100c
+);
+
+
+
+border-bottom:
+
+2px solid #7b512d;
+
+
+
+box-shadow:
+
+0 8px 20px rgba(0,0,0,.7);
+
+
+z-index:2;
+
+
+}
+
+
+
+
+
+.bah-header button{
+
+
+background:none;
+
+
+border:0;
+
+
+color:#d6b36a;
+
+
+font-size:26px;
+
+
+}
+
+
+
+
+.bah-title{
+
+
+text-align:center;
+
+
+font-size:22px;
+
+
+letter-spacing:6px;
+
+
+color:#e1c37b;
+
+
+}
+
+
+
+.bah-title span{
+
+
+display:block;
+
+
+font-size:11px;
+
+
+letter-spacing:3px;
+
+
+margin-top:5px;
+
+
+color:#a88b55;
+
+
+}
+
+
+
+
+
+
+
+.bah-main{
+
+
+flex:1;
+
+
+overflow:auto;
+
+
+padding:24px;
+
+
+z-index:1;
+
+
+}
+
+
+
+
+
+
+
+.bah-paper{
+
+
+position:relative;
+
+
+padding:28px;
+
+
+background:
+
+
+linear-gradient(
+135deg,
+#d8c58e,
+#b99a5d
+);
+
+
+
+color:#302015;
+
+
+
+border:
+
+1px solid #76502d;
+
+
+
+box-shadow:
+
+0 15px 35px rgba(0,0,0,.8);
+
+
+}
+
+
+
+.bah-paper::before{
+
+
+content:"";
+
+
+position:absolute;
+
+
+inset:10px;
+
+
+border:
+
+1px solid rgba(90,40,20,.35);
+
+
+pointer-events:none;
+
+
+}
+
+
+
+
+.bah-paper h2{
+
+
+margin-top:0;
+
+
+font-size:22px;
+
+
+color:#54251b;
+
+
+}
+
+
+
+
+
+.bah-seal{
+
+
+display:inline-block;
+
+
+margin-top:20px;
+
+
+padding:8px 14px;
+
+
+border:
+
+2px solid #8c2620;
+
+
+
+color:#8c2620;
+
+
+transform:rotate(-8deg);
+
+
+}
+
+
+
+
+.bah-door{
+
+
+margin-top:45px;
+
+
+height:210px;
+
+
+
+display:flex;
+
+
+align-items:center;
+
+
+justify-content:center;
+
+
+flex-direction:column;
+
+
+
+background:
+
+
+linear-gradient(
+90deg,
+#241209,
+#090605
+);
+
+
+
+border:
+
+3px solid #80552c;
+
+
+
+box-shadow:
+
+0 20px 40px black;
+
+
+color:#d8b56b;
+
+
+font-size:24px;
+
+
+}
+
+
+
+
+.bah-nav{
+
+
+height:76px;
+
+
+display:flex;
+
+
+justify-content:space-around;
+
+
+align-items:center;
+
+
+
+background:
+
+
+linear-gradient(
+180deg,
+#2a180c,
+#130b07
+);
+
+
+
+border-top:
+
+2px solid #76502d;
+
+
+}
+
+
+
+.bah-nav button{
+
+
+background:none;
+
+
+border:0;
+
+
+color:#d8c39a;
+
+
+font-family:inherit;
+
+
+display:flex;
+
+
+flex-direction:column;
+
+
+align-items:center;
+
+
+}
+
+
+
+
+.bah-nav i{
+
+
+font-style:normal;
+
+
+font-size:12px;
+
+
+color:#9c7745;
+
+
+}
+
+
+
+.bah-nav span{
+
+
+font-size:22px;
+
+
+color:#e0c17a;
+
+
+}
+
+
+</style>
+
+
+</div>
 
 `;
 
@@ -432,7 +620,7 @@ ${renderPage()}
         function renderPage(){
 
 
-          if(currentPage === "home"){
+          if(currentPage==="home"){
 
 
             return `
@@ -447,12 +635,12 @@ ${renderPage()}
 
 
               <p>
-              轮回者：读取中
+              轮回者：未登记
               </p>
 
 
               <p>
-              编号：BH-0001
+              编号：等待生成
               </p>
 
 
@@ -466,27 +654,28 @@ ${renderPage()}
               </p>
 
 
-              <div style="
-              margin-top:20px;
-              color:#8b2929;
-              ">
-              【初入回廊】
+
+              <div class="bah-seal">
+              初入回廊
               </div>
 
 
+
             </div>
+
 
 
             <div class="bah-door">
 
 
-              木门
+            旧木门
 
 
-              <br>
+            <br>
 
 
-              推开回廊之门
+            推开回廊之门
+
 
 
             </div>
@@ -499,7 +688,9 @@ ${renderPage()}
 
 
 
-          if(currentPage === "door"){
+
+
+          if(currentPage==="door"){
 
 
             return `
@@ -508,27 +699,27 @@ ${renderPage()}
             <div class="bah-paper">
 
 
-              <h2>
-              副本入口
-              </h2>
+            <h2>
+            副本入口
+            </h2>
 
 
-              <p>
-              当前没有开启的轮回。
-              </p>
+            <p>
+            当前没有开启的轮回。
+            </p>
 
 
-              <p>
-              等待新的回廊生成。
-              </p>
+            <p>
+            等待轮回系统生成新的世界。
+            </p>
 
 
 
-              <button class="old-btn">
+            <button class="old-btn">
 
-              开启新的副本
+            开启新的回廊
 
-              </button>
+            </button>
 
 
             </div>
@@ -542,7 +733,8 @@ ${renderPage()}
 
 
 
-          if(currentPage === "bond"){
+
+          if(currentPage==="bond"){
 
 
             return `
@@ -551,19 +743,19 @@ ${renderPage()}
             <div class="bah-paper">
 
 
-              <h2>
-              同行契约
-              </h2>
+            <h2>
+            同行契约
+            </h2>
 
 
-              <p>
-              尚未选择同行者。
-              </p>
+            <p>
+            暂无同行者。
+            </p>
 
 
-              <p>
-              后续将连接 Roche 角色系统。
-              </p>
+            <p>
+            后续连接角色系统。
+            </p>
 
 
             </div>
@@ -577,7 +769,9 @@ ${renderPage()}
 
 
 
-          if(currentPage === "record"){
+
+
+          if(currentPage==="record"){
 
 
             return `
@@ -586,19 +780,27 @@ ${renderPage()}
             <div class="bah-paper">
 
 
-              <h2>
-              轮回档案
-              </h2>
+            <h2>
+            轮回档案
+            </h2>
 
 
-              <p>
-              尚未留下记录。
-              </p>
+            <p>
+            副本记录：
+            暂无
+            </p>
 
 
-              <p>
-              副本经历、线索、世界记录将在这里保存。
-              </p>
+            <p>
+            世界书：
+            未开启
+            </p>
+
+
+            <p>
+            记忆：
+            空白
+            </p>
 
 
             </div>
@@ -608,7 +810,6 @@ ${renderPage()}
 
 
           }
-
 
 
           return "";
@@ -623,6 +824,7 @@ ${renderPage()}
         function bindEvents(){
 
 
+
           const back =
           container.querySelector(".bah-back");
 
@@ -631,7 +833,7 @@ ${renderPage()}
           if(back){
 
 
-            back.onclick = ()=>{
+            back.onclick=()=>{
 
 
               roche.ui.closeApp();
@@ -645,6 +847,7 @@ ${renderPage()}
 
 
 
+
           const bell =
           container.querySelector(".bah-bell");
 
@@ -653,11 +856,11 @@ ${renderPage()}
           if(bell){
 
 
-            bell.onclick = ()=>{
+            bell.onclick=()=>{
 
 
               roche.ui.toast(
-              "铜铃暂未响应"
+              "铜铃暂无回应"
               );
 
 
@@ -669,17 +872,18 @@ ${renderPage()}
 
 
 
+
+
           container
           .querySelectorAll(".bah-nav button")
-          .forEach(button=>{
+          .forEach(btn=>{
 
 
-            button.onclick = ()=>{
+            btn.onclick=()=>{
 
 
               currentPage =
-              button.dataset.page;
-
+              btn.dataset.page;
 
 
               render();
@@ -693,6 +897,8 @@ ${renderPage()}
 
 
         }
+
+
 
 
 
