@@ -4,7 +4,7 @@ window.RochePlugin.register({
 
   name: "彼岸回廊",
 
-  version: "1.0.2",
+  version: "1.0.3",
 
 
   apps: [
@@ -21,89 +21,43 @@ window.RochePlugin.register({
       async mount(container, roche) {
 
 
-        let selectedCharacter = null;
+        let currentPage = "home";
 
 
-        async function loadCharacters(){
-
-
-          try {
-
-            const chars = await roche.character.list();
-
-            return Array.isArray(chars) ? chars : [];
-
-
-          } catch(e){
-
-            console.error(e);
-
-            return [];
-
-          }
-
-        }
-
-
-
-        async function saveCharacter(char){
-
-
-          selectedCharacter = char;
-
-
-          await roche.storage.set(
-            "selected-companion",
-            {
-              id: char.id,
-              name: char.name || char.handle || ""
-            }
-          );
-
-
-          render();
-
-        }
-
-
-
-
-        async function render(){
-
-
-          const characters = await loadCharacters();
-
+        function render(){
 
 
           container.innerHTML = `
 
+          <div class="bah-app">
 
-          <div class="bi-app">
+
+            <header class="bah-header">
 
 
-            <header class="bi-header">
+              <button class="bah-back">
+                ←
+              </button>
 
-              <div>
-              ◀
+
+
+              <div class="bah-title">
+
+                <div>
+                  彼岸回廊
+                </div>
+
+                <small>
+                  无限轮回系统
+                </small>
+
               </div>
 
 
-              <div class="bi-title">
 
-                <strong>
-                彼岸回廊
-                </strong>
-
-                <span>
-                无限轮回系统
-                </span>
-
-              </div>
-
-
-              <div>
-              🔔
-              </div>
+              <button class="bah-bell">
+                🔔
+              </button>
 
 
             </header>
@@ -111,10 +65,344 @@ window.RochePlugin.register({
 
 
 
-            <main>
+
+            <main class="bah-main">
+
+              ${renderPage()}
+
+            </main>
 
 
-              <section class="bi-paper">
+
+
+
+            <nav class="bah-nav">
+
+
+              <button data-page="home">
+
+                <span>回</span>
+                <small>大厅</small>
+
+              </button>
+
+
+
+              <button data-page="door">
+
+                <span>门</span>
+                <small>副本</small>
+
+              </button>
+
+
+
+              <button data-page="bond">
+
+                <span>缘</span>
+                <small>同行</small>
+
+              </button>
+
+
+
+              <button data-page="record">
+
+                <span>卷</span>
+                <small>档案</small>
+
+              </button>
+
+
+            </nav>
+
+
+
+          </div>
+
+
+
+
+          <style>
+
+
+          .bah-app{
+
+            height:100%;
+            width:100%;
+            background:
+            radial-gradient(
+            circle at top,
+            #292015,
+            #090909 70%
+            );
+
+            color:#d8b56a;
+
+            display:flex;
+            flex-direction:column;
+
+            font-family:
+            "Noto Serif SC",
+            serif;
+
+          }
+
+
+
+
+
+          .bah-header{
+
+            height:70px;
+
+            display:flex;
+
+            align-items:center;
+
+            justify-content:space-between;
+
+            padding:0 18px;
+
+            border-bottom:
+
+            1px solid rgba(180,130,50,.5);
+
+            background:
+
+            rgba(20,15,10,.85);
+
+          }
+
+
+
+
+
+          .bah-header button{
+
+            background:none;
+
+            border:none;
+
+            color:#d8b56a;
+
+            font-size:22px;
+
+          }
+
+
+
+
+          .bah-title{
+
+            text-align:center;
+
+            font-size:20px;
+
+            letter-spacing:4px;
+
+          }
+
+
+
+          .bah-title small{
+
+            display:block;
+
+            font-size:11px;
+
+            opacity:.7;
+
+            letter-spacing:2px;
+
+          }
+
+
+
+
+
+          .bah-main{
+
+            flex:1;
+
+            overflow:auto;
+
+            padding:20px;
+
+          }
+
+
+
+
+
+
+          .bah-nav{
+
+            height:72px;
+
+            display:flex;
+
+            justify-content:space-around;
+
+            align-items:center;
+
+            border-top:
+
+            1px solid rgba(180,130,50,.5);
+
+            background:
+
+            linear-gradient(
+            90deg,
+            #24170d,
+            #100b07
+            );
+
+          }
+
+
+
+
+          .bah-nav button{
+
+            background:none;
+
+            border:none;
+
+            color:#cba15b;
+
+            display:flex;
+
+            flex-direction:column;
+
+            gap:5px;
+
+            font-family:inherit;
+
+          }
+
+
+
+
+
+          .bah-nav span{
+
+            font-size:22px;
+
+          }
+
+
+
+
+
+          .bah-nav small{
+
+            font-size:12px;
+
+          }
+
+
+
+
+
+
+          .bah-paper{
+
+
+            background:
+
+            linear-gradient(
+            120deg,
+            #d5bd8a,
+            #bda36d
+            );
+
+
+            color:#24160b;
+
+
+            padding:25px;
+
+
+            border:
+
+            1px solid #8d692c;
+
+
+            box-shadow:
+
+            0 10px 30px #000;
+
+          }
+
+
+
+
+
+          .bah-door{
+
+
+            margin-top:40px;
+
+            height:180px;
+
+
+            border:
+
+            3px solid #8d692c;
+
+
+            background:
+
+            linear-gradient(
+            90deg,
+            #29170b,
+            #100805
+            );
+
+
+            display:flex;
+
+            align-items:center;
+
+            justify-content:center;
+
+
+            font-size:28px;
+
+          }
+
+
+
+
+
+          </style>
+
+
+          `;
+
+
+          bindEvents();
+
+        }
+
+
+
+
+
+        function renderPage(){
+
+
+          if(currentPage==="home"){
+
+
+            return `
+
+
+            <section>
+
+
+              <div class="bah-paper">
 
 
                 <h2>
@@ -137,240 +425,176 @@ window.RochePlugin.register({
                 </p >
 
 
+                <p>
+                探索世界：0 / 无限
+                </p >
 
-              </section>
 
+              </div>
 
 
 
 
-              <section class="bi-companion">
+              <div class="bah-door">
 
+                🚪
 
-              <h3>
-              选择同行角色
-              </h3>
+                <br>
 
+                推开回廊之门
 
+              </div>
 
-              ${
-                characters.length
 
-                ?
+            </section>
 
-                characters.map(char=>{
 
+            `;
 
-                  const name =
-                  char.handle ||
-                  char.name ||
-                  "未知角色";
-
-
-                  const bio =
-                  char.bio ||
-                  char.description ||
-                  "";
-
-
-                  return `
-
-
-                  <div class="bi-character"
-                  data-id="${char.id}">
-
-
-                    <div class="avatar">
-
-                    ${
-                    char.avatar
-                    ?
-                    `< img src="${char.avatar}">`
-                    :
-                    "?"
-                    }
-
-                    </div>
-
-
-                    <div>
-
-                    <b>${name}</b>
-
-                    <p>${bio}</p >
-
-                    </div>
-
-
-                  </div>
-
-
-                  `;
-
-
-                }).join("")
-
-
-                :
-
-                "<p>暂无角色</p >"
-
-              }
-
-
-
-              </section>
-
-
-
-
-
-              <button id="enter">
-
-              🚪 进入回廊
-
-              </button>
-
-
-
-
-            </main>
-
-
-
-
-          </div>
-
-
-
-
-
-
-          <style>
-
-
-          .bi-app{
-
-            height:100%;
-            background:#111;
-            color:#d5b06a;
-            font-family:serif;
-            overflow:auto;
 
           }
 
 
 
-          .bi-header{
+          if(currentPage==="door"){
 
-            height:70px;
-            display:flex;
-            justify-content:space-around;
-            align-items:center;
-            border-bottom:1px solid #6d542b;
+
+            return `
+
+            <div class="bah-paper">
+
+            <h2>
+            副本入口
+            </h2>
+
+
+            <p>
+            当前轮回：暂无
+            </p >
+
+
+            <button>
+            开始新的回廊
+            </button>
+
+
+            </div>
+
+
+            `;
+
 
           }
 
 
 
-          .bi-title{
-
-            text-align:center;
-
-          }
+          if(currentPage==="bond"){
 
 
-          .bi-title span{
+            return `
 
-            display:block;
-            font-size:12px;
+
+            <div class="bah-paper">
+
+
+            <h2>
+            同行契约
+            </h2>
+
+
+            <p>
+            角色系统将在这里展开
+            </p >
+
+
+            </div>
+
+
+            `;
+
 
           }
 
 
 
 
-          main{
+          if(currentPage==="record"){
 
-            padding:20px;
+
+            return `
+
+
+            <div class="bah-paper">
+
+
+            <h2>
+            轮回档案
+            </h2>
+
+
+            <p>
+            暂无记录
+            </p >
+
+
+            </div>
+
+
+            `;
+
 
           }
 
 
-
-          .bi-paper{
-
-            background:#d8c49a;
-            color:#24180d;
-            padding:20px;
-            margin-bottom:20px;
-
-          }
+        }
 
 
 
 
 
-          .bi-character{
-
-            display:flex;
-            gap:15px;
-            padding:15px;
-            margin:10px 0;
-            background:#1d1d1d;
-            border:1px solid #6d542b;
-            cursor:pointer;
-
-          }
+        function bindEvents(){
 
 
-
-          .avatar img{
-
-            width:50px;
-            height:50px;
-            border-radius:50%;
-
-          }
+          container
+          .querySelector(".bah-back")
+          .onclick=()=>{
 
 
-
-          button{
-
-            width:100%;
-            padding:15px;
-            background:#5b1717;
-            color:#f0d58b;
-            border:1px solid #c49a4a;
-
-          }
+            roche.ui.closeApp();
 
 
-
-          </style>
-
-
-          `;
+          };
 
 
 
 
           container
-          .querySelectorAll(".bi-character")
-          .forEach(el=>{
+          .querySelector(".bah-bell")
+          .onclick=()=>{
 
 
-            el.onclick=()=>{
+            roche.ui.toast(
+            "系统设置"
+            );
 
 
-              const id=el.dataset.id;
+          };
 
 
-              const char=
-              characters.find(c=>c.id===id);
+
+          container
+          .querySelectorAll(".bah-nav button")
+          .forEach(btn=>{
 
 
-              saveCharacter(char);
+            btn.onclick=()=>{
+
+
+              currentPage=
+              btn.dataset.page;
+
+
+              render();
 
 
             };
@@ -379,41 +603,17 @@ window.RochePlugin.register({
           });
 
 
-
-          container
-          .querySelector("#enter")
-          .onclick=async()=>{
-
-
-            const current =
-            await roche.storage.get(
-              "selected-companion"
-            );
-
-
-            roche.ui.toast(
-              current
-              ?
-              "同行者："+current.name
-              :
-              "请先选择同行角色"
-            );
-
-
-          };
-
-
-
-
         }
+
+
 
 
 
         render();
 
 
-
       },
+
 
 
 
